@@ -1,4 +1,8 @@
+//Modules
 const inquirer = require('inquirer');
+
+//MySQL Connection Module
+const connection = require('./main/db/connection');
 
 
 
