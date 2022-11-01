@@ -52,6 +52,14 @@ function userOptions() {
 
 userOptions();
 
-// function departments() {
+// function departments() {}
 
-// }
+// function roles() {}
+
+// function employees() {}
+
+// function addDepartments() {}
+
+// function addEmployee() {}
+
+// function updateEmployee() {}
