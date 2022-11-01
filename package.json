@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  },
+  "name": "employee-tracker",
+  "description": "Application that tracks employees via roles, departments, and managers.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KSoto18/Employee-Tracker.git"
+  },
+  "keywords": [
+    "tracker",
+    "employee"
+  ],
+  "author": "Khris Soto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KSoto18/Employee-Tracker/issues"
+  },
+  "homepage": "https://github.com/KSoto18/Employee-Tracker#readme"
+}
