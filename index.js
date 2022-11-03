@@ -19,7 +19,7 @@ function userOptions() {
                 'Add a Department',
                 'Add a Role',
                 'Add an Employee',
-                'Update an Emplpoyee Role',
+                'Update an Emplpoyee Role'
             ]
         }
     ])
@@ -43,7 +43,6 @@ function userOptions() {
                 case 'Update an Emplpoyee Role':
                     updateEmployee();
                     break;
-
             }
         })
 }
@@ -92,8 +91,6 @@ function addEmployee() {
                     
                     db.query('SELECT * FROM employee', function (err, answers) {
                         if (err) throw err;
-                            userOptions();
-                    
                         console.table(answers);
                         userOptions();
          }) 
