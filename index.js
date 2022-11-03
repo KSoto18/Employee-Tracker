@@ -60,6 +60,33 @@ userOptions();
 
 // function addDepartments() {}
 
-// function addEmployee() {}
+function addEmployee() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'firstName',
+            message: "Employee's first name:"
+
+        },
+        {
+            type: 'input',
+            name: 'lastName',
+            message: "Employee's last name:"
+        },
+        {
+            type: 'list',
+            name: 'employeeRole',
+            message: "Choose the role for the employee:",
+            choices: ['Director', 'Manager', 'Supervisor', 'Team Memeber']
+        },
+        {
+            type: 'input',
+            name: 'employeeManager',
+            message: "Emplyee's Manager: "
+        }
+    ])
+}
 
 // function updateEmployee() {}
+
+m prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
