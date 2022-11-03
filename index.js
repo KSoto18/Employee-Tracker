@@ -5,7 +5,6 @@ const inquirer = require('inquirer');
 const db = require('./main/db/connection');
 
 
-
 function userOptions() {
     inquirer.prompt([
         {
@@ -47,7 +46,14 @@ function userOptions() {
         })
 }
 
-userOptions();
+// Starts Apllication
+setUp();
+
+function setUp() {
+     userOptions();
+   }
+
+
 
 // function departments() {}
 
@@ -92,7 +98,7 @@ function addEmployee() {
                     db.query('SELECT * FROM employee', function (err, answers) {
                         if (err) throw err;
                         console.table(answers);
-                        userOptions();
+                        setUp();
          }) 
     });
  });
