@@ -43,7 +43,7 @@ function userOptions() {
                     updateEmployee();
                     break;
             }
-        })
+        });
 }
 
 // Starts Apllication
@@ -115,11 +115,10 @@ function addDepartment() {
                     db.query('SELECT * FROM department', function (err, answers) {
                         if (err) throw err;
                         console.table(answers);             
-         }) 
+         });
     });
  });
 }
-    
 
 
 // Adds new employee to the employees table
@@ -162,11 +161,39 @@ function addEmployee() {
                         if (err) throw err;
                         console.table(answers);
                         
-         }) 
+         }); 
     });
  });
 }
 
+// Updates Employee by ID input
+function updateEmployee() {
+      inquirer.prompt([
+        {
+            type: 'input',
+            name: 'first_name',
+            message: 'First name of Employee you would like to update: '
+        },
+        {
+            type: 'number',
+            name: 'role_id',
+            message: 'Id # of new role for the Employee: '
+        }
+      ])
+      .then(function (answers){
+        db.query(`UPDATE employee SET role_id = ? WHERE first_name = ?`, 
+        [answers.role_id, answers.first_name],
+        function (err, data) {
+            if (err) { 
+             throw err;
+            }
 
-// function updateEmployee() {}
-
+            console.info(`Employee: ${answers.first_name}, Updated!`);
+             
+            db.query('SELECT * FROM employee', function (err, answers) {
+                if (err) throw err;
+                console.table(answers);
+       });
+    });
+ });
+}
