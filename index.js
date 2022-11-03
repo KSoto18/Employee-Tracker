@@ -60,13 +60,24 @@ function departments() {
             if (err) { 
                 throw err;
             }
-            
+
             console.table(answers);
             setUp();
          }
      )};
 
-// function roles() {}
+function roles() {
+        const dataBase = 'SELECT * FROM role';
+             db.query(dataBase, function (err, answers) {
+                if (err) { 
+                    throw err;
+                }
+                
+                console.table(answers);
+                setUp();
+             });
+        }
+
 
 // function employees() {}
 
