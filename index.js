@@ -2,7 +2,7 @@
 const inquirer = require('inquirer');
 
 //MySQL Connection Module
-const connection = require('./main/db/connection');
+const db = require('./main/db/connection');
 
 
 
@@ -11,7 +11,7 @@ function userOptions() {
         {
             type: 'list',
             name: 'options',
-            message: 'Select and option: ',
+            message: 'Select an option: ',
             choices: [
                 'View all Departments',
                 'View all Roles',
@@ -23,31 +23,29 @@ function userOptions() {
             ]
         }
     ])
-    .then(function(selection) {
-        switch(selection.options){
-            case 'View all Departments':
-                departments();
-            break;
-            case 'View all Roles':
-                roles();
-            break;
-            case 'View all Employees':
-                employees();
-            break;
-            case 'Add a Department':
-                addDepartment();
-            break;
-            case 'Add an Employee':
-                addEmployee();
-            break;
-            case 'Update an Emplpoyee Role':
-                updateEmployee();
-            break;
+        .then(function (selection) {
+            switch (selection.options) {
+                case 'View all Departments':
+                    departments();
+                    break;
+                case 'View all Roles':
+                    roles();
+                    break;
+                case 'View all Employees':
+                    employees();
+                    break;
+                case 'Add a Department':
+                    addDepartment();
+                    break;
+                case 'Add an Employee':
+                    addEmployee();
+                    break;
+                case 'Update an Emplpoyee Role':
+                    updateEmployee();
+                    break;
 
-            default:
-                ok();
-        }
-    })
+            }
+        })
 }
 
 userOptions();
@@ -64,29 +62,45 @@ function addEmployee() {
     inquirer.prompt([
         {
             type: 'input',
-            name: 'firstName',
+            name: 'first_name',
             message: "Employee's first name:"
 
         },
         {
             type: 'input',
-            name: 'lastName',
+            name: 'last_name',
             message: "Employee's last name:"
         },
         {
-            type: 'list',
-            name: 'employeeRole',
-            message: "Choose the role for the employee:",
-            choices: ['Director', 'Manager', 'Supervisor', 'Team Memeber']
+            type: 'number',
+            name: 'role_id',
+            message: "Role ID:",
+            
         },
         {
-            type: 'input',
-            name: 'employeeManager',
-            message: "Emplyee's Manager: "
+            type: 'number',
+            name: 'manager_id',
+            message: "Employee's Manager's ID: "
         }
     ])
+        .then(function (answers) {
+            db.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',
+                [answers.first_name, answers.last_name, answers.role_id, answers.manager_id],
+                function (err, data) {
+                    if (err) throw err;
+                    console.info(`New Employee added!`);
+                    
+                    db.query('SELECT * FROM employee', function (err, answers) {
+                        if (err) throw err;
+                            userOptions();
+                    
+                        console.table(answers);
+                        userOptions();
+         }) 
+    });
+ });
 }
+
 
 // function updateEmployee() {}
 
-m prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
