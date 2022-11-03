@@ -57,7 +57,10 @@ function setUp() {
 function departments() {
     const dataBase = 'SELECT * FROM department';
          db.query(dataBase, function (err, answers) {
-            if (err) throw err;
+            if (err) { 
+                throw err;
+            }
+            
             console.table(answers);
             setUp();
          }
@@ -99,9 +102,12 @@ function addEmployee() {
             db.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',
                 [answers.first_name, answers.last_name, answers.role_id, answers.manager_id],
                 function (err, data) {
-                    if (err) throw err;
+                    if (err) { 
+                     throw err;
+                    }
+
                     console.info(`New Employee added!`);
-                    
+                     
                     db.query('SELECT * FROM employee', function (err, answers) {
                         if (err) throw err;
                         console.table(answers);
