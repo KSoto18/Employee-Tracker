@@ -53,7 +53,7 @@ function setUp() {
      userOptions();
    }
 
-// View all departments
+// View all departments from the database
 function departments() {
     const dataBase = 'SELECT * FROM department';
          db.query(dataBase, function (err, answers) {
@@ -62,10 +62,11 @@ function departments() {
             }
 
             console.table(answers);
-            setUp();
+            
          }
      )};
 
+// View all roles from the database
 function roles() {
         const dataBase = 'SELECT * FROM role';
              db.query(dataBase, function (err, answers) {
@@ -74,12 +75,22 @@ function roles() {
                 }
                 
                 console.table(answers);
-                setUp();
+                
              });
         }
 
-
-// function employees() {}
+// View all Employees from the database function
+function employees() {
+    const dataBase = 'SELECT * FROM employee';
+             db.query(dataBase, function (err, answers) {
+                if (err) { 
+                    throw err;
+                }
+                
+                console.table(answers);
+               
+             });
+        }
 
 // function addDepartments() {}
 
