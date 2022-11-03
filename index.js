@@ -53,9 +53,15 @@ function setUp() {
      userOptions();
    }
 
-
-
-// function departments() {}
+// View all departments
+function departments() {
+    const dataBase = 'SELECT * FROM department';
+         db.query(dataBase, function (err, answers) {
+            if (err) throw err;
+            console.table(answers);
+            setUp();
+         }
+     )};
 
 // function roles() {}
 
@@ -63,6 +69,7 @@ function setUp() {
 
 // function addDepartments() {}
 
+// Adds new employee to the employees table
 function addEmployee() {
     inquirer.prompt([
         {
