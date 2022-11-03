@@ -92,7 +92,35 @@ function employees() {
              });
         }
 
-// function addDepartments() {}
+// Adds a new department
+function addDepartment() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'dept_name',
+            message: "New Department name: "
+
+        }
+    ])
+        .then(function (answers) {
+            db.query('INSERT INTO department (dept_name) VALUES (?)',
+                [answers.dept_name],
+                function (err, data) {
+                    if (err) { 
+                     throw err;
+                    }
+
+                    console.info(`New Department added!`);
+                     
+                    db.query('SELECT * FROM department', function (err, answers) {
+                        if (err) throw err;
+                        console.table(answers);             
+         }) 
+    });
+ });
+}
+    
+
 
 // Adds new employee to the employees table
 function addEmployee() {
@@ -133,7 +161,7 @@ function addEmployee() {
                     db.query('SELECT * FROM employee', function (err, answers) {
                         if (err) throw err;
                         console.table(answers);
-                        setUp();
+                        
          }) 
     });
  });
