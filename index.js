@@ -21,7 +21,8 @@ function userOptions() {
                 'Add a Role',
                 'Add an Employee',
                 'Update an Emplpoyee Role',
-                'Add a Role'
+                'Add a Role',
+                'Show Current Roster'
             ]
         }
     ])
@@ -48,7 +49,10 @@ function userOptions() {
                 case 'Add a Role':
                     addRole();
                     break;
-            };
+                case 'Show Current Roster':
+                     roster();
+                    break;
+            }
         });
 };
 
@@ -246,6 +250,24 @@ function addRole() {
         });
 };
 
+// Shows full list of Employees with they're current Role, Salary and Manager ID
+function roster() {
+    const dataBase = `SELECT first_name, last_name, title, salary, dept_id, manager_id
+                      FROM employee
+                      INNER JOIN role
+                      ON employee.role_id = role.dept_id
+                      INNER JOIN department
+                      ON role.dept_id = department.id`;
+    db.query(dataBase, function (err, answers) {
+        if (err) {
+            throw err;
+        }
+
+        console.table(answers);
+
+    }
+    )
+};
 
 // Starts Apllication
 userOptions();
