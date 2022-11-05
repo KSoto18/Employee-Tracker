@@ -1,11 +1,13 @@
 //Modules
 const inquirer = require('inquirer');
 
+
 //MySQL Connection Module
 const db = require('./main/db/connection');
 
-
+//Main function
 function userOptions() {
+
     inquirer.prompt([
         {
             type: 'list',
@@ -46,52 +48,49 @@ function userOptions() {
                 case 'Add a Role':
                     addRole();
                     break;
-            }
+            };
         });
-}
-
-// Starts Apllication
-userOptions();
-  
+};
 
 // View all departments from the database
 function departments() {
     const dataBase = 'SELECT * FROM department';
-         db.query(dataBase, function (err, answers) {
-            if (err) { 
-                throw err;
-            }
+    db.query(dataBase, function (err, answers) {
+        if (err) {
+            throw err;
+        }
 
-            console.table(answers);
-            
-         }
-     )};
+        console.table(answers);
+
+    }
+    )
+};
 
 // View all roles from the database
 function roles() {
-        const dataBase = 'SELECT * FROM role';
-             db.query(dataBase, function (err, answers) {
-                if (err) { 
-                    throw err;
-                }
-                
-                console.table(answers);
-                
-             });
+    const dataBase = 'SELECT * FROM role';
+    db.query(dataBase, function (err, answers) {
+        if (err) {
+            throw err;
         }
+
+        console.table(answers);
+
+    });
+};
 
 // View all Employees from the database function
 function employees() {
     const dataBase = 'SELECT * FROM employee';
-             db.query(dataBase, function (err, answers) {
-                if (err) { 
-                    throw err;
-                }
-                
-                console.table(answers);
-               
-             });
+    db.query(dataBase, function (err, answers) {
+        if (err) {
+            throw err;
         }
+
+        console.table(answers);
+
+    });
+};
 
 // Adds a new department
 function addDepartment() {
@@ -107,21 +106,21 @@ function addDepartment() {
             db.query('INSERT INTO department (dept_name) VALUES (?)',
                 [answers.dept_name],
                 function (err, data) {
-                    if (err) { 
-                     throw err;
+                    if (err) {
+                        throw err;
                     }
 
-                    console.info(`New Department added!`);
-                     
+                    console.info(`\n New Department added!`);
+
                     db.query('SELECT * FROM department', function (err, answers) {
-                        if (err) { 
+                        if (err) {
                             throw err;
                         }
-                        console.table(answers);             
-         });
-    });
- });
-}
+                        console.table(answers);
+                    });
+                });
+        });
+};
 
 
 // Adds new employee to the employees table
@@ -142,7 +141,7 @@ function addEmployee() {
             type: 'number',
             name: 'role_id',
             message: "Role ID:",
-            
+
         },
         {
             type: 'number',
@@ -154,26 +153,26 @@ function addEmployee() {
             db.query('INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?,?,?,?)',
                 [answers.first_name, answers.last_name, answers.role_id, answers.manager_id],
                 function (err, data) {
-                    if (err) { 
-                     throw err;
+                    if (err) {
+                        throw err;
                     }
 
-                    console.info(`New Employee added!`);
-                     
+                    console.info(`\n New Employee added!`);
+
                     db.query('SELECT * FROM employee', function (err, answers) {
                         if (err) {
                             throw err;
                         }
                         console.table(answers);
-                        
-         }); 
-    });
- });
-}
+
+                    });
+                });
+        });
+};
 
 // Updates Employee by ID # input
 function updateEmployee() {
-      inquirer.prompt([
+    inquirer.prompt([
         {
             type: 'input',
             name: 'first_name',
@@ -184,26 +183,26 @@ function updateEmployee() {
             name: 'role_id',
             message: 'Id # of new role for the Employee: '
         }
-      ])
-      .then(function (answers){
-        db.query(`UPDATE employee SET role_id = ? WHERE first_name = ?`, 
-        [answers.role_id, answers.first_name],
-        function (err, data) {
-            if (err) { 
-             throw err;
-            }
+    ])
+        .then(function (answers) {
+            db.query(`UPDATE employee SET role_id = ? WHERE first_name = ?`,
+                [answers.role_id, answers.first_name],
+                function (err, data) {
+                    if (err) {
+                        throw err;
+                    }
 
-            console.info(`Employee: ${answers.first_name}, Updated!`);
-             
-            db.query('SELECT * FROM employee', function (err, answers) {
-                if (err) {
-                    throw err;
-                }
-                console.table(answers);
-       });
-    });
- });
-}
+                    console.info(`\n Employee: ${answers.first_name}, Updated!`);
+
+                    db.query('SELECT * FROM employee', function (err, answers) {
+                        if (err) {
+                            throw err;
+                        }
+                        console.table(answers);
+                    });
+                });
+        });
+};
 
 // Add a new Role
 function addRole() {
@@ -231,18 +230,24 @@ function addRole() {
             db.query(`INSERT INTO role (title, salary, dept_id) VALUES (?,?,?)`,
                 [answers.title, answers.salary, answers.dept_id],
                 function (err, data) {
-                    if (err) { 
-                     throw err;
+                    if (err) {
+                        throw err;
                     }
 
-                    console.info(`New Role added!`);
-                     
+                    console.info(`\n New Role added!`);
+
                     db.query('SELECT * FROM role', function (err, answers) {
-                        if (err) { 
+                        if (err) {
                             throw err;
-                          }
-                        console.table(answers);             
-         });
-    });
- });
-}
+                        }
+                        console.table(answers);
+                    });
+                });
+        });
+};
+
+
+// Starts Apllication
+userOptions();
+
+
