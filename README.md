@@ -4,12 +4,13 @@
 
 ## Description
 
- This application helps an employer keep track of they're current staff. It saves basic information about the employee in a database. This application allows you to add new departments within the business as well as update a current employee.
+ This application helps an employer keep track of they're current staff. It saves basic information about the employee in a SQL database. This application allows you to add new departments within the business as well as update a current employee.
 
 ## Table of Contents
 * [Installation](#installation)
 * [Usage](#usage)
 * [Demo](#demo)
+* [Links](#links)
 * [Sources](#sources)
 * [License](#license)
 * [Contact](#contact)
@@ -32,7 +33,7 @@ To use the application do the following:
  2. To start the application used the command 'node index.js'.
  3. Select the option you would like to execute.
  4. Answer the questions if necessary.
- 5. A table should display the information selected.
+ 5. A table should display the results of the selected option.
 
 
 <br>
@@ -42,15 +43,19 @@ To use the application do the following:
  ### Demonstration 
 <br>
 
-  ![screenshot]()
+  ![screenshot](./assets/Screenshot%201.jpg)
 <br>
 
 ### Demonstration 
 <br>
  
-  ![Screenshot]()
+  ![Screenshot](./assets/Screenshot%202.jpg)
 
 <br><br>
+
+## Links
+   - [Video](https://drive.google.com/file/d/1EotOSlIxN27kXFeq6LjBhw96SIz1X49e/view)
+   - [Repository](https://github.com/KSoto18/Employee-Tracker)
 
  ## Sources
   
