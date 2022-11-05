@@ -18,7 +18,8 @@ function userOptions() {
                 'Add a Department',
                 'Add a Role',
                 'Add an Employee',
-                'Update an Emplpoyee Role'
+                'Update an Emplpoyee Role',
+                'Add a Role'
             ]
         }
     ])
@@ -42,16 +43,16 @@ function userOptions() {
                 case 'Update an Emplpoyee Role':
                     updateEmployee();
                     break;
+                case 'Add a Role':
+                    addRole();
+                    break;
             }
         });
 }
 
 // Starts Apllication
-setUp();
-
-function setUp() {
-     userOptions();
-   }
+userOptions();
+  
 
 // View all departments from the database
 function departments() {
@@ -166,7 +167,7 @@ function addEmployee() {
  });
 }
 
-// Updates Employee by ID input
+// Updates Employee by ID # input
 function updateEmployee() {
       inquirer.prompt([
         {
@@ -194,6 +195,46 @@ function updateEmployee() {
                 if (err) throw err;
                 console.table(answers);
        });
+    });
+ });
+}
+
+// Add a new Role
+function addRole() {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'title',
+            message: "New Role title: "
+
+        },
+        {
+            type: 'input',
+            name: 'salary',
+            message: "Yearly Salary for this Role: "
+
+        },
+        {
+            type: 'number',
+            name: 'dept_id',
+            message: "ID # of Department associated with this Role: "
+
+        },
+    ])
+        .then(function (answers) {
+            db.query(`INSERT INTO role (title, salary, dept_id) VALUES (?,?,?)`,
+                [answers.title, answers.salary, answers.dept_id],
+                function (err, data) {
+                    if (err) { 
+                     throw err;
+                    }
+
+                    console.info(`New Role added!`);
+                     
+                    db.query('SELECT * FROM role', function (err, answers) {
+                        if (err) throw err;
+                        console.table(answers);             
+         });
     });
  });
 }
