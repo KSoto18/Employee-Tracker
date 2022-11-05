@@ -114,7 +114,9 @@ function addDepartment() {
                     console.info(`New Department added!`);
                      
                     db.query('SELECT * FROM department', function (err, answers) {
-                        if (err) throw err;
+                        if (err) { 
+                            throw err;
+                        }
                         console.table(answers);             
          });
     });
@@ -159,7 +161,9 @@ function addEmployee() {
                     console.info(`New Employee added!`);
                      
                     db.query('SELECT * FROM employee', function (err, answers) {
-                        if (err) throw err;
+                        if (err) {
+                            throw err;
+                        }
                         console.table(answers);
                         
          }); 
@@ -192,7 +196,9 @@ function updateEmployee() {
             console.info(`Employee: ${answers.first_name}, Updated!`);
              
             db.query('SELECT * FROM employee', function (err, answers) {
-                if (err) throw err;
+                if (err) {
+                    throw err;
+                }
                 console.table(answers);
        });
     });
@@ -232,7 +238,9 @@ function addRole() {
                     console.info(`New Role added!`);
                      
                     db.query('SELECT * FROM role', function (err, answers) {
-                        if (err) throw err;
+                        if (err) { 
+                            throw err;
+                          }
                         console.table(answers);             
          });
     });
