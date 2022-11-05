@@ -2,8 +2,8 @@ INSERT INTO department(dept_name)
 VALUES ('Front Of House'),
        ('Back of House'),
        ('Operations'),
-       ('Marketing'),
-       ('Catering');
+       ('Marketing');
+      
 
 INSERT INTO role(title, salary, dept_id)
 VALUES ('Director', 65000, 1),

@@ -266,7 +266,7 @@ function addRole() {
 
 // Shows full list of Employees with they're current Role, Salary and Manager ID
 function roster() {
-    const dataBase = `SELECT first_name, last_name, title, salary, dept_id, manager_id
+   const dataBase = `SELECT first_name, last_name, title, salary, dept_id, manager_id
                       FROM employee
                       INNER JOIN role
                       ON employee.role_id = role.dept_id
