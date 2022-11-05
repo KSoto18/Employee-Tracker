@@ -50,7 +50,7 @@ function userOptions() {
                     addRole();
                     break;
                 case 'Show Current Roster':
-                     roster();
+                    roster();
                     break;
             }
         });
@@ -65,6 +65,8 @@ function departments() {
         }
 
         console.table(answers);
+        console.log(`\n Select a new option \n`);
+        userOptions();
 
     }
     )
@@ -79,6 +81,8 @@ function roles() {
         }
 
         console.table(answers);
+        console.log(`\n Select a new option \n`);
+        userOptions();
 
     });
 };
@@ -92,6 +96,8 @@ function employees() {
         }
 
         console.table(answers);
+        console.log(`\n Select a new option \n`);
+        userOptions();
 
     });
 };
@@ -121,6 +127,8 @@ function addDepartment() {
                             throw err;
                         }
                         console.table(answers);
+                        console.log(`\n Select a new option \n`);
+                        userOptions();
                     });
                 });
         });
@@ -168,6 +176,8 @@ function addEmployee() {
                             throw err;
                         }
                         console.table(answers);
+                        console.log(`\n Select a new option \n`);
+                        userOptions();
 
                     });
                 });
@@ -203,6 +213,8 @@ function updateEmployee() {
                             throw err;
                         }
                         console.table(answers);
+                        console.log(`\n Select a new option \n`);
+                        userOptions();
                     });
                 });
         });
@@ -245,6 +257,8 @@ function addRole() {
                             throw err;
                         }
                         console.table(answers);
+                        console.log(`\n Select a new option \n`);
+                        userOptions();
                     });
                 });
         });
@@ -264,9 +278,10 @@ function roster() {
         }
 
         console.table(answers);
+        console.log(`\n Select a new option \n`);
+        userOptions();
 
-    }
-    )
+    })
 };
 
 // Starts Apllication
